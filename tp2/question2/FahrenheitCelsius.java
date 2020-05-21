@@ -1,38 +1,70 @@
 package question2;
 
-
 /**
  * Décrivez votre classe FahrenheitCelsius ici.
  * 
- * @author (votre nom) 
- * @version (un numéro de version ou une date)
+ * @author Agatha Khairallah
+ * @version 1.0
  */
 public class FahrenheitCelsius{
 
-     /** le point d'entrée de cette application, 
-      * dont le commentaire est à compléter
-      *
-      *  @param args ...
-      */
-     public static void main(String[] args){
-       try{
-       
-      
-       }catch(NumberFormatException nfe){
-           System.out.println("error : " + nfe.getMessage());  // en cas d'erreur 
-       }
-       
-     }
-     
-     /** 
-      * la méthode à compléter. 
-      *   @param f la valeur en degré Fahrenheit
-      *   @return  la conversion en degré Celsius
-      */
-     public static float fahrenheitEnCelsius( int f){
-       // ...
-       return 0.F;	// à compléter	en remplaçant la valeur retournée par la fonction de conversion
-       // ...
-     }
+    /** le point d'entrée de cette application, 
+     * dont le commentaire est à compléter
+     *
+     *  @param args ...
+     */
+    public static void main(String[] args){
+        int fahrenheit = 0;
+        double celsius = 0.0;
+
+        // En utilisant foreach
+        for (String fahrenheitTemperature : args) {
+            try {
+                fahrenheit = Integer.parseInt(fahrenheitTemperature);
+                celsius = fahrenheitEnCelsius(fahrenheit);
+
+                System.out.println(fahrenheit + "\u00B0F -> " + celsius + "\u00B0C"); 
+
+            } catch (NumberFormatException nfe){
+                System.out.println("error : " + nfe.getMessage());  // en cas d'erreur 
+            }
+        }   
+
+        /*
+         * // En utilisant une simple boucle for
+         * for (int i = 0; i < args.length; i += 1) {
+         *     try {
+         *      fahrenheit = Integer.parseInt(args[i]);
+         *      celsius = fahrenheitEnCelsius(fahrenheit);
+         *      System.out.println(fahrenheit + "\u00B0F -> " + celsius + "\u00B0C");
+         *     } catch (NumberFormatException nfe){
+         *          System.out.println("error : " + nfe.getMessage());  // en cas d'erreur 
+         *     }
+         *  }
+         */
+
+    }
+
+    /** 
+     * la méthode à compléter. 
+     *   @param f la valeur en degré Fahrenheit
+     *   @return  la conversion en degré Celsius
+     */
+
+    /*
+     * Un problème a lieu au niveau des entiers ayant
+     * une grande valeur. En utilisant un float, la 
+     * valeur n'est pas précise. Afin de résoudre ce problème,
+     * on peut utiliser le double.
+     * Prenons un exemple pour montrer la différence: 
+     * "2000000000°F -> 214748368.0°C" (En utilisant le float)
+     * "2000000000°F -> 1111111093.3°C" (En utilisant le double)
+     */
+    public static double fahrenheitEnCelsius(int f){
+        double celsiusTemperature = (((double)5)/((double)9))*(f - 32);
+        celsiusTemperature = ((long)(celsiusTemperature * 10))/10.0;
+
+        return celsiusTemperature;
+    }
 
 }

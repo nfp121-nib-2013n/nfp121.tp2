@@ -68,5 +68,29 @@ public class FahrenheitCelsiusTest extends junit.framework.TestCase
      * Par convention, leurs noms devraient débuter par "test".
      * Vous pouvez ébaucher le corps grâce au menu contextuel "Enregistrer une méthode de test".
      */
-
+    public void test_fahrenheitEnCelsius() {
+        assertEquals("    38 °F -> 3.3 °C ? ", 3.3, question2.FahrenheitCelsius.fahrenheitEnCelsius(38), 0.1);
+        assertEquals("  163 °F -> 72.7 °C ? ", 72.7, question2.FahrenheitCelsius.fahrenheitEnCelsius(163), 0.1);
+        assertEquals(" 305 °F -> 151.6 °C ?", 151.6, question2.FahrenheitCelsius.fahrenheitEnCelsius(305), 0.1);
+        assertEquals("   418 °F -> 214.4 °C ?", 214.4, question2.FahrenheitCelsius.fahrenheitEnCelsius(418), 0.1);
+    }
+    
+    // Un test pour les entiers négatifs
+    public void test_fahrenheitEnCelsiusNegatif() {
+        assertEquals("    -8 °F -> -22.2 °C ? ", -22.2, question2.FahrenheitCelsius.fahrenheitEnCelsius(-8), 0.1);
+        assertEquals("    -91 °F -> -68.3 °C ? ", -68.3, question2.FahrenheitCelsius.fahrenheitEnCelsius(-91), 0.1);
+    }
+    
+    // Un test pour les grands entiers  
+    public void test_fahrenheitEnCelsiusEntier() {
+        assertEquals("    2055349852 °F -> 1141861011.1 °C ? ", 1141861011.1, question2.FahrenheitCelsius.fahrenheitEnCelsius(2055349852), 0.1);
+        assertEquals("    2143879068 °F -> 1191043908.8 °C ? ", 1191043908.8, question2.FahrenheitCelsius.fahrenheitEnCelsius(2143879068), 0.1);
+    }
+    
+    // Un test pour s'assurer que le signe de la température est correcte
+    public void test_fahrenheitEnCelsiusSigne() {
+        assertTrue("La température en °C  de 32 °F est zéro ? ", question2.FahrenheitCelsius.fahrenheitEnCelsius(32) == 0);
+        assertTrue("La température en °C  de 3 °F est négative ? ", question2.FahrenheitCelsius.fahrenheitEnCelsius(3) < 0 );
+        assertTrue("La température en °C  de 70 °F est positive ? ", question2.FahrenheitCelsius.fahrenheitEnCelsius(70) > 0 );
+    }
 }
